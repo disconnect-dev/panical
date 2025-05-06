@@ -3,93 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSINT Specialist | Selfkill</title>
-    
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>PANICAL - OSINT Specialist</title>
     
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        dark: {
-                            950: '#000000',
-                            900: '#050505',
-                            800: '#0A0A0A',
-                            700: '#121212',
-                            600: '#1A1A1A',
-                            500: '#222222',
-                            400: '#2A2A2A',
-                        },
-                        accent: {
-                            red: '#FF0000',
-                            darkred: '#9A0000',
-                            glow: '#FF3333',
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'shine': 'shine 8s ease-in-out infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'fadeIn': 'fadeIn 0.8s ease-out',
-                        'slideUp': 'slideUp 0.8s ease-out',
-                        'slideDown': 'slideDown 0.8s ease-out',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'gradient': 'gradient 15s ease infinite alternate',
-                        'scanline': 'scanline 6s linear infinite',
-                    },
-                    keyframes: {
-                        shine: {
-                            '0%, 100%': { boxShadow: '0 0 25px 0px rgba(255, 0, 0, 0)' },
-                            '50%': { boxShadow: '0 0 25px 0px rgba(255, 0, 0, 0.3)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: 0 },
-                            '100%': { opacity: 1 },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: 0 },
-                            '100%': { transform: 'translateY(0)', opacity: 1 },
-                        },
-                        slideDown: {
-                            '0%': { transform: 'translateY(-20px)', opacity: 0 },
-                            '100%': { transform: 'translateY(0)', opacity: 1 },
-                        },
-                        glow: {
-                            '0%': { textShadow: '0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.3), 0 0 15px rgba(255, 0, 0, 0.1)' },
-                            '100%': { textShadow: '0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3)' },
-                        },
-                        gradient: {
-                            '0%': { backgroundPosition: '0% 50%' },
-                            '100%': { backgroundPosition: '100% 50%' },
-                        },
-                        scanline: {
-                            '0%': { backgroundPosition: '0% 0%' },
-                            '100%': { backgroundPosition: '0% 100%' },
-                        }
-                    },
-                    backdropBlur: {
-                        xs: '2px',
-                    }
-                }
-            }
+    <style>
+        /* Base Styles */
+        :root {
+            --black: #000000;
+            --dark-900: #050505;
+            --dark-800: #0A0A0A;
+            --dark-700: #121212;
+            --dark-600: #1A1A1A;
+            --dark-500: #222222;
+            --dark-400: #2A2A2A;
+            --dark-300: #333333;
+            
+            --white: #ffffff;
+            --gray-100: #f3f3f3;
+            --gray-200: #e0e0e0;
+            --gray-300: #c6c6c6;
+            --gray-400: #9e9e9e;
+            --gray-500: #757575;
+            
+            --accent-red: #ff0000;
+            --accent-darkred: #9A0000;
+            --accent-glow: #ff3333;
+            
+            --notification-success: #4CAF50;
+            --notification-info: #2196F3;
+            --notification-error: #f44336;
+            
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+            
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            --border-radius-xl: 20px;
+            --border-radius-full: 9999px;
         }
-    </script>
-    
-    <style type="text/css">
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -97,25 +59,58 @@
         }
         
         body {
-            overflow-x: hidden;
-            background-color: #000000;
-            color: #ffffff;
             font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
         }
         
-        .grid-pattern {
-            background-image: 
-                linear-gradient(to right, rgba(40, 40, 40, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(40, 40, 40, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
-        
-        .scanline {
-            position: absolute;
+        /* Background Effects */
+        .background {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -10;
+            pointer-events: none;
+        }
+        
+        .grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(30, 30, 30, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 30, 30, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -9;
+        }
+        
+        .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: -8;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.03), transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.03), transparent 35%);
+        }
+        
+        .noise-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: -7;
+            opacity: 0.03;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAANiElEQVR4nO1dbVczNw69JCEvBJInEEIgEIb//6/6fbu73e77xECgJKSEJjY2IA/44FhHlmTJtmxP+GZ6zpzd9diWZVlXsu/evXsnnyZJvvw/FL9G0eunP5CIub0x0V8j/XFzc3N9fS2e59F5+qto4CkRe7nM64DyIL+M/PP8+fNnz559/vy5E/uc6E/xqMzrUj/NE46ia45GT05OIvA3b968fPnytnNyR+gN8+vXr2tra0tLS7u7u8NeXnLu7OwEU5qWFpM6aolgrOncsfHII+EOD8a6mwNHpFBKYW8wQH8/ffr0y5cvP3/+RAnXpQqJB2nixMuT1r2{+}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');
+        }
+        
+        .scanlines {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
             background: repeating-linear-gradient(
                 to bottom,
                 transparent,
@@ -123,342 +118,697 @@
                 rgba(0, 0, 0, 0.03) 5px,
                 rgba(0, 0, 0, 0.03) 6px
             );
-            pointer-events: none;
-            z-index: 15;
             opacity: 0.4;
         }
         
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            transition: var(--transition-medium);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo span {
+            color: var(--accent-red);
+        }
+        
+        .language-switcher {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .language-btn {
+            background: var(--dark-700);
+            border: 1px solid var(--dark-500);
+            color: var(--gray-400);
+            padding: 8px 16px;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition-medium);
+        }
+        
+        .language-btn:hover, .language-btn.active {
+            background: var(--dark-600);
+            color: var(--white);
+            border-color: var(--dark-400);
+        }
+        
+        .language-btn.active {
+            border-color: var(--accent-red);
+            color: var(--white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-avatar {
+            position: relative;
+            margin-bottom: 32px;
+        }
+        
+        .avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--border-radius-full);
+            overflow: hidden;
+            position: relative;
+            border: 2px solid var(--dark-600);
+            padding: 4px;
+            box-shadow: 
+                0 0 0 2px var(--accent-red),
+                0 0 20px rgba(255, 0, 0, 0.3);
+            animation: pulse 4s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 2px var(--accent-red), 0 0 20px rgba(255, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 0 3px var(--accent-red), 0 0 30px rgba(255, 0, 0, 0.5); }
+        }
+        
+        .avatar-img {
             width: 100%;
             height: 100%;
-            background-image: url('data:image/png;base64,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');
-            opacity: 0.02;
-            pointer-events: none;
-            z-index: 10;
-            mix-blend-mode: overlay;
+            object-fit: cover;
+            border-radius: var(--border-radius-full);
         }
         
-        .glass {
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            max-width: 800px;
         }
         
-        .glass-card {
-            background: rgba(26, 26, 26, 0.25);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .hero-title span {
+            color: var(--accent-red);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
         
-        .red-glow {
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        .hero-description {
+            font-size: 18px;
+            color: var(--gray-400);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
         }
         
-        .red-pulse {
-            animation: redPulse 3s infinite;
-        }
-        
-        @keyframes redPulse {
-            0%, 100% { box-shadow: 0 0 15px 0px rgba(255, 0, 0, 0.2); }
-            50% { box-shadow: 0 0 30px 5px rgba(255, 0, 0, 0.4); }
-        }
-        
-        .animate-delay-100 { animation-delay: 100ms; }
-        .animate-delay-200 { animation-delay: 200ms; }
-        .animate-delay-300 { animation-delay: 300ms; }
-        .animate-delay-400 { animation-delay: 400ms; }
-        .animate-delay-500 { animation-delay: 500ms; }
-        .animate-delay-600 { animation-delay: 600ms; }
-        .animate-delay-700 { animation-delay: 700ms; }
-        
-        .checklist li {
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            background: linear-gradient(to right, var(--accent-red), var(--accent-darkred));
+            color: var(--white);
+            font-weight: 600;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            font-size: 16px;
+            transition: var(--transition-medium);
             position: relative;
-            padding-left: 1.75rem;
-            margin-bottom: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
         }
         
-        .checklist li::before {
-            content: "✓";
-            color: #FF0000;
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.4);
+        }
+        
+        .hero-cta::after {
+            content: '';
             position: absolute;
-            left: 0;
-            font-weight: bold;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: var(--transition-slow);
         }
         
-        .hover-scale {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .hero-cta:hover::after {
+            left: 100%;
         }
         
-        .hover-scale:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        .hero-cta svg {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
         }
         
-        .hover-scale-sm {
-            transition: transform 0.3s ease;
-        }
-        
-        .hover-scale-sm:hover {
-            transform: translateY(-2px) scale(1.03);
-        }
-        
-        .gradient-border {
+        /* Section Styles */
+        .section {
+            padding: 60px 0;
             position: relative;
-            border-radius: 0.5rem;
-            z-index: 0;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-red), transparent);
+        }
+        
+        /* Cards Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid var(--dark-500);
+            border-radius: var(--border-radius-md);
+            padding: 24px;
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-red);
+            opacity: 0.7;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--dark-400);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 12px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-red);
+            transition: var(--transition-medium);
+        }
+        
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 0, 0, 0.2);
+        }
+        
+        .card-content {
+            color: var(--gray-400);
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        /* About Card */
+        .about-card {
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid var(--dark-500);
+            border-radius: var(--border-radius-md);
+            padding: 32px;
+            margin-bottom: 40px;
+            position: relative;
+            transition: var(--transition-medium);
+        }
+        
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-red);
+            opacity: 0.7;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .about-content {
+            color: var(--gray-300);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        
+        .about-meta {
+            color: var(--gray-400);
+            font-size: 15px;
+        }
+        
+        .about-meta strong {
+            color: var(--white);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background: var(--dark-700);
+            color: var(--gray-300);
+            border: 1px solid var(--dark-500);
+            border-radius: var(--border-radius-sm);
+            padding: 8px 16px;
+            font-size: 14px;
+            transition: var(--transition-medium);
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-red);
+            color: var(--white);
+            background: var(--dark-600);
+        }
+        
+        /* Projects Section */
+        .project-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--white);
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid var(--dark-500);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: var(--transition-medium);
+            position: relative;
             overflow: hidden;
         }
         
-        .gradient-border::before {
+        .project-link::before {
             content: '';
             position: absolute;
-            z-index: -2;
-            left: -50%;
-            top: -50%;
-            width: 200%;
-            height: 200%;
-            background-color: transparent;
-            background-repeat: no-repeat;
-            background-size: 50% 50%, 50% 50%;
-            background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-            background-image: linear-gradient(#111, #111), linear-gradient(#111, #111), linear-gradient(#111, #111), linear-gradient(270deg, rgba(255, 0, 0, 0.5), rgba(100, 0, 0, 0.1));
-            animation: rotate 10s linear infinite;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-red);
+            opacity: 0.7;
         }
         
-        .gradient-border::after {
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--dark-400);
+        }
+        
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--dark-700);
+            border-radius: var(--border-radius-sm);
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-medium);
+            border: 1px solid var(--dark-500);
+        }
+        
+        .project-link:hover .project-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 0, 0, 0.1);
+        }
+        
+        .project-content {
+            flex: 1;
+        }
+        
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            transition: var(--transition-medium);
+        }
+        
+        .project-link:hover .project-title {
+            color: var(--accent-red);
+        }
+        
+        .project-description {
+            font-size: 14px;
+            color: var(--gray-400);
+        }
+        
+        /* Pricing Section */
+        .pricing-card {
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid var(--dark-500);
+            border-radius: var(--border-radius-md);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-medium);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .pricing-card::before {
             content: '';
             position: absolute;
-            z-index: -1;
-            left: 1px;
-            top: 1px;
-            width: calc(100% - 2px);
-            height: calc(100% - 2px);
-            background: #0A0A0A;
-            border-radius: 0.5rem;
-        }
-        
-        @keyframes rotate {
-            100% {
-                transform: rotate(1turn);
-            }
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(15, 15, 15, 0.1);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 0, 0, 0.4);
-        }
-        
-        /* Particle effect */
-        .particles {
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--accent-red), transparent);
+            opacity: 0.7;
         }
         
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background-color: rgba(255, 0, 0, 0.2);
-            border-radius: 50%;
-            pointer-events: none;
+        .pricing-text {
+            font-size: 18px;
+            color: var(--gray-300);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .pricing-highlight {
+            font-size: 24px;
+            color: var(--accent-red);
+            font-weight: 600;
+            animation: pulse 4s infinite ease-in-out;
+            display: inline-block;
+        }
+        
+        .pricing-note {
+            font-size: 15px;
+            color: var(--gray-400);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--dark-500);
+            margin-top: 60px;
+        }
+        
+        .footer-text {
+            font-size: 13px;
+            color: var(--gray-500);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        
+        .footer-separator {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-red), transparent);
+            margin: 0 auto;
+            opacity: 0.5;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-card,
+            .pricing-card {
+                padding: 24px;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-800);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--dark-400);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-300);
         }
     </style>
 </head>
-
-<body class="bg-dark-950 text-white font-sans min-h-screen relative">
-    <!-- Overlay effects -->
-    <div class="fixed inset-0 grid-pattern z-0"></div>
-    <div class="scanline"></div>
-    <div class="noise-overlay"></div>
-    <div class="particles" id="particles"></div>
-    
-    <!-- Background Gradients -->
-    <div class="fixed inset-0 bg-gradient-to-br from-dark-950 to-dark-900 z-0"></div>
-    <div class="fixed left-0 top-0 w-1/4 h-1/4 bg-accent-red opacity-2 blur-[100px] rounded-full z-0"></div>
-    <div class="fixed right-0 bottom-0 w-1/4 h-1/4 bg-accent-red opacity-2 blur-[100px] rounded-full z-0"></div>
-    
-    <!-- Background Image -->
-    <div class="fixed inset-0 opacity-15 z-0">
-        <img src="https://media.discordapp.net/attachments/1363847807869386824/1368282182166122548/2.png?ex=6817a795&is=68165615&hm=ce90db97fe4fbb6dd2f146bc691acc636f66d852a5e1792d1527ec066b91ddab&=&format=webp&quality=lossless&width=550&height=309" 
-             alt="" class="w-full h-full object-cover" />
+<body>
+    <!-- Background Effects -->
+    <div class="background">
+        <div class="grid-pattern"></div>
+        <div class="gradient-overlay"></div>
+        <div class="noise-overlay"></div>
     </div>
+    <div class="scanlines"></div>
     
-    <!-- Content Container -->
-    <div class="relative z-10 container mx-auto px-4 py-8 max-w-6xl">
+    <div class="container">
         <!-- Header -->
-        <header class="flex justify-between items-center py-6 mb-16 animate-fadeIn">
-            <div class="font-bold text-xl tracking-tight relative overflow-hidden pb-1 group">
-                <span class="inline-block">PANICAL</span><span class="text-accent-red inline-block group-hover:animate-pulse"></span>
-                <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-red to-transparent opacity-70 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-            </div>
-            
-            <div class="flex space-x-3">
-                <button class="px-4 py-2 border border-dark-400 bg-dark-700 bg-opacity-50 rounded text-sm font-medium hover:border-accent-red hover:bg-dark-600 transition-all duration-300 hover-scale-sm shadow-sm">
-                    RU
-                </button>
-                <button class="px-4 py-2 border border-dark-600 rounded text-sm font-medium text-gray-500 hover:text-white hover:border-dark-400 transition-all duration-300 hover-scale-sm">
-                    EN
-                </button>
+        <header>
+            <div class="logo">PAN<span>ICAL</span></div>
+            <div class="language-switcher">
             </div>
         </header>
         
         <!-- Hero Section -->
-        <section class="text-center mb-24 animate-fadeIn animate-delay-100">
-            <div class="inline-block p-1 rounded-full mb-8 bg-gradient-to-r from-dark-700 to-accent-darkred animate-pulse-slow hover:animate-none relative">
-                <div class="absolute inset-0 bg-gradient-to-r from-dark-700 via-accent-red to-dark-700 rounded-full opacity-20 blur-md animate-spin-slow"></div>
-                <div class="w-28 h-28 rounded-full overflow-hidden bg-dark-800 border border-dark-600 relative z-10">
-                    <img src="https://cdn.discordapp.com/attachments/1363847807869386824/1367924140149047367/image.png?ex=681702e1&is=6815b161&hm=1e9faddbef16643eb3d93dbb6ed19a47d29c823dfd13d9c9e3c20bbf7c2f0988&format=webp&quality=lossless" alt="Avatar" class="w-full h-full object-cover" />
+        <section class="hero">
+            <div class="hero-avatar fade-in">
+                <div class="avatar-wrapper">
+                    <img src="https://cdn.discord-tracker.com/attachments/1f/6d/6f14f1bef8ae263bd5b4eb25db93.jpg" alt="Avatar" class="avatar-img">
                 </div>
             </div>
-            
-            <h1 class="text-6xl font-bold tracking-tight mb-4 drop-shadow-md animate-glow">
-                PAN<span class="text-accent-red">ICAL</span>
-            </h1>
-            
-            <p class="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
+            <h1 class="hero-title fade-in delay-100">PAN<span>ICAL</span></h1>
+            <p class="hero-description fade-in delay-200">
                 Цифровая разведка и анализ информации из открытых источников
             </p>
-            
-            <a href="https://discord.com/users/1332323333861146675" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-accent-red to-accent-darkred rounded-md font-medium transition-all duration-500 hover:shadow-lg hover:shadow-accent-red/20 hover:translate-y-[-3px] group relative overflow-hidden" target="_blank" rel="noopener noreferrer">
-                <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-accent-darkred via-accent-red to-accent-darkred bg-[length:200%_100%] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                <span class="absolute inset-0 w-0 h-full bg-white/10 skew-x-15 transform transition-all duration-500 group-hover:w-full"></span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 relative z-10" viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://discord.com/users/1332323333861146675" class="hero-cta fade-in delay-300" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                     <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                 </svg>
-                <span class="relative z-10">Связаться</span>
+                Связаться
             </a>
         </section>
         
         <!-- About Section -->
-        <section class="mb-28 animate-slideUp animate-delay-200 opacity-0">
-            <h2 class="text-2xl font-bold mb-10 inline-block relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 after:h-[2px] after:bg-gradient-to-r after:from-accent-red after:to-transparent">
-                OSINT И ЦИФРОВАЯ РАЗВЕДКА
-            </h2>
+        <section class="section fade-in delay-400">
+            <h2 class="section-title">OSINT И ЦИФРОВАЯ РАЗВЕДКА</h2>
             
-            <div class="glass-card rounded-lg p-8 transform transition-all duration-500 hover-scale relative overflow-hidden group">
-                <div class="absolute top-0 left-0 w-2 h-full bg-accent-red opacity-70"></div>
-                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                
-                <p class="text-gray-300 mb-6 leading-relaxed">
+            <div class="about-card">
+                <p class="about-content">
                     Я занимаюсь поиском, анализом и обработкой информации в открытых источниках. 
                     Моя специализация включает выявление цифровых угроз, анализ цифровых следов и проведение 
                     расследований с использованием методологий OSINT, SOCINT и GEOINT.
                 </p>
-                
-                <p class="text-gray-400">
-                    Род деятельности: <span class="text-white opacity-80">OSINT, SOCINT, GEOINT, Кибербезопасность, анализ данных и решение конфликтов</span>
+                <p class="about-meta">
+                    Род деятельности: <strong>OSINT, SOCINT, GEOINT, Кибербезопасность, анализ данных и решение конфликтов</strong>
                 </p>
             </div>
         </section>
         
         <!-- Services Section -->
-        <section class="mb-28 animate-slideUp animate-delay-300 opacity-0">
-            <h2 class="text-2xl font-bold mb-10 inline-block relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 after:h-[2px] after:bg-gradient-to-r after:from-accent-red after:to-transparent">
-                ЧЕМ Я ЗАНИМАЮСЬ
-            </h2>
+        <section class="section fade-in delay-500">
+            <h2 class="section-title">ЧЕМ Я ЗАНИМАЮСЬ</h2>
             
-            <div class="glass-card rounded-lg p-8 transform transition-all duration-500 hover-scale relative overflow-hidden group mb-12">
-                <div class="absolute top-0 left-0 w-2 h-full bg-accent-red opacity-70"></div>
-                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                
-                <ul class="checklist text-gray-300 space-y-4">
-                    <li class="transform hover:translate-x-1 transition-transform duration-200">Поиск и выявление угроз в сети.</li>
-                    <li class="transform hover:translate-x-1 transition-transform duration-200">Анализ цифровых следов и информации о людях.</li>
-                    <li class="transform hover:translate-x-1 transition-transform duration-200">Расследования, связанные с выявлением противоправных действий (педофилия, груминг, мошенничество и т. д.).</li>
-                    <li class="transform hover:translate-x-1 transition-transform duration-200">Геолокационный анализ данных, поиск местоположения по фото и видеоматериалам.</li>
-                    <li class="transform hover:translate-x-1 transition-transform duration-200">Разоблачение самозванцев, фейковых личностей и цифровых аферистов.</li>
-                    <li class="transform hover:translate-x-1 transition-transform duration-200">Консультации по защите личных данных и анонимности в сети.</li>
+            <div class="about-card" style="margin-bottom: 32px;">
+                <ul style="color: var(--gray-300); padding-left: 24px;">
+                    <li style="margin-bottom: 12px; position: relative;">
+                        <span style="color: var(--accent-red); position: absolute; left: -24px;"></span>
+                        Поиск и выявление угроз в сети.
+                    </li>
+                    <li style="margin-bottom: 12px; position: relative;">
+                        <span style="color: var(--accent-red); position: absolute; left: -24px;"></span>
+                        Анализ цифровых следов и информации о людях.
+                    </li>
+                    <li style="margin-bottom: 12px; position: relative;">
+                        <span style="color: var(--accent-red); position: absolute; left: -24px;"></span>
+                        Расследования, связанные с выявлением противоправных действий (педофилия, груминг, мошенничество и т. д.).
+                    </li>
+                    <li style="margin-bottom: 12px; position: relative;">
+                        <span style="color: var(--accent-red); position: absolute; left: -24px;"></span>
+                        Геолокационный анализ данных, поиск местоположения по фото и видеоматериалам.
+                    </li>
+                    <li style="margin-bottom: 12px; position: relative;">
+                        <span style="color: var(--accent-red); position: absolute; left: -24px;"></span>
+                        Разоблачение самозванцев, фейковых личностей и цифровых аферистов.
+                    </li>
+                    <li style="position: relative;">
+                        <span style="color: var(--accent-red); position: absolute; left: -24px;"></span>
+                        Консультации по защите личных данных и анонимности в сети.
+                    </li>
                 </ul>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card rounded-lg p-8 transform transition-all duration-500 hover-scale relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-accent-red opacity-70"></div>
-                    <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                    
-                    <h3 class="text-xl font-semibold mb-4 text-white flex items-center">
-                        <span class="w-8 h-8 rounded-full bg-accent-red bg-opacity-10 flex items-center justify-center mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent-red" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            <div class="card-grid">
+                <div class="card">
+                    <h3 class="card-title">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
-                        </span>
+                        </div>
                         Поиск и выявление угроз
                     </h3>
-                    <p class="text-gray-400 pl-11">
+                    <p class="card-content">
                         Поиск и выявление угроз в сети. Анализ цифровых следов и информации о людях.
                     </p>
                 </div>
                 
-                <div class="glass-card rounded-lg p-8 transform transition-all duration-500 hover-scale relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-accent-red opacity-70"></div>
-                    <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                    
-                    <h3 class="text-xl font-semibold mb-4 text-white flex items-center">
-                        <span class="w-8 h-8 rounded-full bg-accent-red bg-opacity-10 flex items-center justify-center mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent-red" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                <div class="card">
+                    <h3 class="card-title">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
                             </svg>
-                        </span>
+                        </div>
                         Расследования
                     </h3>
-                    <p class="text-gray-400 pl-11">
+                    <p class="card-content">
                         Расследования, связанные с выявлением противоправных действий (педофилия, груминг, мошенничество и т. д.).
                     </p>
                 </div>
                 
-                <div class="glass-card rounded-lg p-8 transform transition-all duration-500 hover-scale relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-accent-red opacity-70"></div>
-                    <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                    
-                    <h3 class="text-xl font-semibold mb-4 text-white flex items-center">
-                        <span class="w-8 h-8 rounded-full bg-accent-red bg-opacity-10 flex items-center justify-center mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent-red" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                <div class="card">
+                    <h3 class="card-title">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
                             </svg>
-                        </span>
+                        </div>
                         Геолокационный анализ
                     </h3>
-                    <p class="text-gray-400 pl-11">
+                    <p class="card-content">
                         Геолокационный анализ данных, поиск местоположения по фото и видеоматериалам.
                     </p>
                 </div>
                 
-                <div class="glass-card rounded-lg p-8 transform transition-all duration-500 hover-scale relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-accent-red opacity-70"></div>
-                    <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                    
-                    <h3 class="text-xl font-semibold mb-4 text-white flex items-center">
-                        <span class="w-8 h-8 rounded-full bg-accent-red bg-opacity-10 flex items-center justify-center mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent-red" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                <div class="card">
+                    <h3 class="card-title">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
-                        </span>
+                        </div>
                         Защита личных данных
                     </h3>
-                    <p class="text-gray-400 pl-11">
+                    <p class="card-content">
                         Разоблачение самозванцев, фейковых личностей и цифровых аферистов. Консультации по защите личных данных и анонимности в сети.
                     </p>
                 </div>
@@ -466,296 +816,82 @@
         </section>
         
         <!-- Skills Section -->
-        <section class="mb-28 animate-slideUp animate-delay-400 opacity-0">
-            <h2 class="text-2xl font-bold mb-10 inline-block relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 after:h-[2px] after:bg-gradient-to-r after:from-accent-red after:to-transparent">
-                НАВЫКИ
-            </h2>
+        <section class="section fade-in delay-600">
+            <h2 class="section-title">НАВЫКИ</h2>
             
-            <div class="flex flex-wrap gap-4">
-                <div class="px-6 py-3 glass-card rounded-md text-gray-300 transform transition-all duration-300 hover-scale-sm hover:border-accent-red hover:text-white group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-accent-red opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                    OSINT
-                </div>
-                <div class="px-6 py-3 glass-card rounded-md text-gray-300 transform transition-all duration-300 hover-scale-sm hover:border-accent-red hover:text-white group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-accent-red opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                    SOCINT
-                </div>
-                <div class="px-6 py-3 glass-card rounded-md text-gray-300 transform transition-all duration-300 hover-scale-sm hover:border-accent-red hover:text-white group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-accent-red opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                    GEOINT
-                </div>
-                <div class="px-6 py-3 glass-card rounded-md text-gray-300 transform transition-all duration-300 hover-scale-sm hover:border-accent-red hover:text-white group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-accent-red opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                    Кибербезопасность
-                </div>
-                <div class="px-6 py-3 glass-card rounded-md text-gray-300 transform transition-all duration-300 hover-scale-sm hover:border-accent-red hover:text-white group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-accent-red opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                    Анализ данных
-                </div>
-                <div class="px-6 py-3 glass-card rounded-md text-gray-300 transform transition-all duration-300 hover-scale-sm hover:border-accent-red hover:text-white group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-accent-red opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                    Решение конфликтов
-                </div>
+            <div class="skills-container">
+                <div class="skill-tag">OSINT</div>
+                <div class="skill-tag">SOCINT</div>
+                <div class="skill-tag">GEOINT</div>
+                <div class="skill-tag">Кибербезопасность</div>
+                <div class="skill-tag">Анализ данных</div>
+                <div class="skill-tag">Решение конфликтов</div>
             </div>
         </section>
         
         <!-- Projects Section -->
-        <section class="mb-28 animate-slideUp animate-delay-500 opacity-0">
-            <h2 class="text-2xl font-bold mb-10 inline-block relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 after:h-[2px] after:bg-gradient-to-r after:from-accent-red after:to-transparent">
-                ПРОЕКТЫ
-            </h2>
+        <section class="section fade-in delay-700">
+            <h2 class="section-title">ПРОЕКТЫ</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="https://discord.gg/36kCEg67" class="group" target="_blank" rel="noopener noreferrer">
-                    <div class="glass-card rounded-lg p-8 h-full flex items-center transform transition-all duration-500 hover-scale relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-accent-red opacity-70"></div>
-                        <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                        
-                        <div class="mr-6 w-14 h-14 bg-dark-600 bg-opacity-50 rounded-full flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-r from-dark-500 to-accent-darkred opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-accent-red" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.39-.444.886-.608 1.283a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.283.077.077 0 0 0-.079-.036c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.226-1.963.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .078.009c.12.098.246.195.373.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-medium text-white mb-2 group-hover:text-accent-red transition-colors duration-300">Discord Community</h3>
-                            <p class="text-gray-400 text-sm">Сообщество по OSINT и кибербезопасности</p>
-                        </div>
-                    </div>
-                </a>
+            <a href="https://discord.gg/36kCEg67" class="project-link" target="_blank" rel="noopener noreferrer">
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-red);">
+                        <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.39-.444.886-.608 1.283a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.283.077.077 0 0 0-.079-.036c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.226-1.963.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .078.009c.12.098.246.195.373.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"></path>
+                    </svg>
+                </div>
+                <div class="project-content">
+                    <h4 class="project-title">Discord Community</h4>
+                    <p class="project-description">Сообщество по OSINT и кибербезопасности</p>
+                </div>
+            </a>
+            
+            <a href="https://discord.gg/ermaa29t" class="project-link" target="_blank" rel="noopener noreferrer">
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-red);">
+                        <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.39-.444.886-.608 1.283a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.283.077.077 0 0 0-.079-.036c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.226-1.963.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .078.009c.12.098.246.195.373.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"></path>
+                    </svg>
+                </div>
+                <div class="project-content">
+                    <h4 class="project-title">Lampire Community</h4>
+                    <p class="project-description">Второе сообщество энтузиастов</p>
+                </div>
+            </a>
+            
+            <a href="https://t.me/selfkillperehodnik" class="project-link" target="_blank" rel="noopener noreferrer">
+                <div class="project-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-red);">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </div>
+                <div class="project-content">
+                    <h4 class="project-title">Telegram Channel - Selfkill</h4>
+                    <p class="project-description">Телеграм канал проекта Selfkill</p>
+                </div>
+            </a>
+        </section>
+        
+        <!-- Pricing Section -->
+        <section class="section fade-in delay-700">
+            <h2 class="section-title">ПРАЙС</h2>
+            
+            <div class="pricing-card">
+                <p class="pricing-text">
+                    За прайсом обращайтесь в личные сообщения - начальная цена от <span class="pricing-highlight">5 долларов</span>.
+                </p>
                 
-                <a href="https://discord.gg/ermaa29t" class="group" target="_blank" rel="noopener noreferrer">
-                    <div class="glass-card rounded-lg p-8 h-full flex items-center transform transition-all duration-500 hover-scale relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-accent-red opacity-70"></div>
-                        <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                        
-                        <div class="mr-6 w-14 h-14 bg-dark-600 bg-opacity-50 rounded-full flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-r from-dark-500 to-accent-darkred opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-accent-red" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.39-.444.886-.608 1.283a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.283.077.077 0 0 0-.079-.036c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.226-1.963.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .078.009c.12.098.246.195.373.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-medium text-white mb-2 group-hover:text-accent-red transition-colors duration-300">Lampire Community</h3>
-                            <p class="text-gray-400 text-sm">Второе сообщество энтузиастов</p>
-                        </div>
-                    </div>
-                </a>
+                <p class="pricing-note">
+                    Стоимость зависит от сложности задачи и необходимых ресурсов для её выполнения.
+                </p>
                 
-                <a href="https://t.me/selfkillperehodnik" class="group md:col-span-2" target="_blank" rel="noopener noreferrer">
-                    <div class="glass-card rounded-lg p-8 h-full flex items-center transform transition-all duration-500 hover-scale relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-accent-red opacity-70"></div>
-                        <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                        
-                        <div class="mr-6 w-14 h-14 bg-dark-600 bg-opacity-50 rounded-full flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-r from-dark-500 to-accent-darkred opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-accent-red" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-medium text-white mb-2 group-hover:text-accent-red transition-colors duration-300">Telegram Channel - Selfkill</h3>
-                            <p class="text-gray-400 text-sm">Телеграм канал проекта Selfkill</p>
-                        </div>
-                    </div>
+                <a href="https://t.me/panical_attacks" class="hero-cta" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    Обсудить стоимость
                 </a>
             </div>
         </section>
         
-        <!-- Price Section -->
-        <section class="mb-28 animate-slideUp animate-delay-600 opacity-0">
-            <h2 class="text-2xl font-bold mb-10 inline-block relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 after:h-[2px] after:bg-gradient-to-r after:from-accent-red after:to-transparent">
-                ПРАЙС
-            </h2>
-            
-            <div class="glass-card rounded-lg p-12 text-center transform transition-all duration-500 hover-scale relative overflow-hidden group">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-red to-transparent opacity-50"></div>
-                <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-accent-red group-hover:w-full transition-all duration-700"></div>
-                
-                <p class="text-gray-200 mb-8 text-lg">
-                    За прайсом обращайтесь в личные сообщения - начальная цена от <span class="text-accent-red font-medium animate-pulse-slow">5 долларов</span>.
-                </p>
-                
-                <p class="text-gray-400 mb-10 max-w-2xl mx-auto">
-                    Стоимость зависит от сложности задачи и необходимых ресурсов для её выполнения.
-                </p>
-                
-                <a href="https://t.me/panical_attacks" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-accent-red to-accent-darkred rounded-md font-medium transition-all duration-500 hover:shadow-lg hover:shadow-accent-red/20 hover:translate-y-[-3px] group relative overflow-hidden" target="_blank" rel="noopener noreferrer">
-                    <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-accent-darkred via-accent-red to-accent-darkred bg-[length:200%_100%] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                    <span class="absolute inset-0 w-0 h-full bg-white/10 skew-x-15 transform transition-all duration-500 group-hover:w-full"></span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 relative z-10" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 relative z-10" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                        </svg>
-                        <span class="relative z-10">Обсудить стоимость</span>
-                    </a>
-                </div>
-            </section>
-            
-            <!-- Footer -->
-            <footer class="border-t border-dark-500 pt-10 pb-16 text-center text-gray-500 text-sm animate-fadeIn animate-delay-700 opacity-0">
-                <p class="text-xs tracking-widest uppercase mb-2">ᴅᴇᴠ ʙʏ ɴᴇᴢᴢɪxᴄᴄᴄ</p>
-                <div class="w-16 h-px mx-auto bg-gradient-to-r from-transparent via-accent-red to-transparent opacity-50 mb-6"></div>
-            </footer>
-        </div>
-        
-        <script>
-            // Animation on scroll
-            document.addEventListener('DOMContentLoaded', function() {
-                const fadeElements = document.querySelectorAll('.animate-fadeIn, .animate-slideUp');
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            if (entry.target.classList.contains('animate-slideUp')) {
-                                entry.target.style.transform = 'translateY(0)';
-                            }
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    root: null,
-                    rootMargin: '0px',
-                    threshold: 0.1
-                });
-                
-                fadeElements.forEach(element => {
-                    observer.observe(element);
-                });
-                
-                // Create particles
-                const particlesContainer = document.getElementById('particles');
-                const particleCount = 50;
-                
-                for (let i = 0; i < particleCount; i++) {
-                    createParticle();
-                }
-                
-                function createParticle() {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    
-                    // Random position
-                    const posX = Math.random() * window.innerWidth;
-                    const posY = Math.random() * window.innerHeight;
-                    
-                    // Random size
-                    const size = Math.random() * 2 + 1;
-                    
-                    // Random opacity
-                    const opacity = Math.random() * 0.2 + 0.1;
-                    
-                    // Random animation duration
-                    const animDuration = Math.random() * 20 + 10;
-                    
-                    // Apply styles
-                    particle.style.left = `${posX}px`;
-                    particle.style.top = `${posY}px`;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.opacity = opacity;
-                    
-                    // Add animation
-                    particle.style.animation = `float ${animDuration}s ease-in-out infinite`;
-                    
-                    // Random delay
-                    particle.style.animationDelay = `${Math.random() * 10}s`;
-                    
-                    // Append to container
-                    particlesContainer.appendChild(particle);
-                    
-                    // Remove and recreate particle after some time
-                    setTimeout(() => {
-                        particle.remove();
-                        createParticle();
-                    }, animDuration * 1000);
-                }
-                
-                // Hover effects for buttons
-                const buttons = document.querySelectorAll('a, button');
-                buttons.forEach(button => {
-                    button.addEventListener('mouseenter', function() {
-                        this.style.transform = 'translateY(-3px)';
-                        this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-                    });
-                    button.addEventListener('mouseleave', function() {
-                        this.style.transform = '';
-                        this.style.boxShadow = '';
-                    });
-                });
-                
-                // Subtle cursor trailer effect
-                const trailer = document.createElement('div');
-                trailer.classList.add('cursor-trailer');
-                trailer.style.position = 'fixed';
-                trailer.style.width = '5px';
-                trailer.style.height = '5px';
-                trailer.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
-                trailer.style.borderRadius = '50%';
-                trailer.style.pointerEvents = 'none';
-                trailer.style.zIndex = '9999';
-                trailer.style.transition = 'transform 0.15s ease-out, width 0.2s ease, height 0.2s ease';
-                trailer.style.transform = 'translate(-50%, -50%)';
-                trailer.style.opacity = '0';
-                document.body.appendChild(trailer);
-                
-                let mouseX = 0;
-                let mouseY = 0;
-                let trailX = 0;
-                let trailY = 0;
-                
-                document.addEventListener('mousemove', function(e) {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    
-                    trailer.style.opacity = '1';
-                    
-                    // Check if cursor is over an interactive element
-                    const hoveredElement = document.elementFromPoint(e.clientX, e.clientY);
-                    if (hoveredElement && (hoveredElement.tagName === 'A' || hoveredElement.tagName === 'BUTTON' || hoveredElement.closest('a') || hoveredElement.closest('button'))) {
-                        trailer.style.width = '15px';
-                        trailer.style.height = '15px';
-                        trailer.style.backgroundColor = 'rgba(255, 0, 0, 0.2)';
-                    } else {
-                        trailer.style.width = '5px';
-                        trailer.style.height = '5px';
-                        trailer.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
-                    }
-                });
-                
-                document.addEventListener('mouseout', function() {
-                    trailer.style.opacity = '0';
-                });
-                
-                function animate() {
-                    // Smooth following effect
-                    trailX += (mouseX - trailX) * 0.15;
-                    trailY += (mouseY - trailY) * 0.15;
-                    
-                    trailer.style.left = `${trailX}px`;
-                    trailer.style.top = `${trailY}px`;
-                    
-                    requestAnimationFrame(animate);
-                }
-                
-                animate();
-            });
-            
-            // Scroll reveal effect
-            window.addEventListener('scroll', function() {
-                const elements = document.querySelectorAll('.glass-card');
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.2;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.classList.add('opacity-100');
-                        element.classList.add('translate-y-0');
-                    }
-                });
-            });
-        </script>
-    </body>
-    </html>
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">ᴅᴇᴠ ʙʏ ɴᴇᴢᴢɪxᴄᴄ
